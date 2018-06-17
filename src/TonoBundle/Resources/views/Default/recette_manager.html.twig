@@ -1,0 +1,24 @@
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+    <h1>Recettes</h1>
+    <table>
+        {% for recette in recetteList %}
+            <tr>
+                <td> <a class="recette" href="{{ path('edit_recette', { 'recette' : recette.id}) }}">
+                        {{ recette.nom }} 
+                    </a></td> <td id="lourdeur_indicator_{{ recette.id }}">  {{ constant('TonoBundle\\Entity\\Recette::LOURD_NAMES')[recette.lourd] }}</td>
+                <td>
+                    <a class="changerlourdeur" data-route="{{ path('change_recette_lourdeur',{id:recette.id,lourdeur:0}) }}" href="#aa">midi</a>
+                    <a class="changerlourdeur" data-route="{{ path('change_recette_lourdeur',{id:recette.id,lourdeur:1}) }}" href="#aa">soir</a>
+                    <a class="changerlourdeur" data-route="{{ path('change_recette_lourdeur',{id:recette.id,lourdeur:2}) }}" href="#aa">adulte</a>
+                    <a class="changerlourdeur" data-route="{{ path('change_recette_lourdeur',{id:recette.id,lourdeur:3}) }}" href="#aa">special</a>
+                </td>
+                <td>
+                    <a href="{{ path('delete_recette', { 'id' : recette.id}) }}">
+                        <img src="{{ asset('img/del.png') }}" />
+                    </a> 
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

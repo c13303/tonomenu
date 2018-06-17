@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/chosen.jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/ingredient_save.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('js/chosen.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
+    </head>
+    <body>
+        
+        <div class="menu1 inline">
+            <a href="{{ path('generate_meal') }}"><img src="{{asset('img/new.png')}}" /></a> .
+            <a href="{{path('ajout_ingredient')}}"><img src="{{asset('img/ingredients.png')}}" /></a> 
+        </div>
+        <div class="logo inline">
+             <a href="{{path('index')}}"><img src="{{asset('img/tonologo.png')}}" /></a> 
+        </div>
+        <div class="menu2 inline">
+            <a href="{{path('manager_recette')}}"><img src="{{asset('img/recettes.png')}}" /></a> .
+            <a href="{{path('ajout_recette')}}"><img src="{{asset('img/new_recette.png')}}" /></a> 
+            <a href="{{path('find_recette')}}"><img src="{{asset('img/placard.png')}}" /></a> 
+        </div>
+        
+       
+         {# <a href="{{path('ajout_meal')}}">Ajouter Menu</a> #}
+          {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+    <h1> AJOUT DE RECETTE</h1>
+
+    <input type="hidden" id="save_ing_route" value="{{ path('ajax_saveingredient') }}" />
+    {{ form(form) }}
+    <input type="hidden" id="save_ing_container" />
+    {% if id %}
+        <a href="{{ path('delete_recette', { 'id' : id}) }}">
+             Effacer recette <img src="{{ asset('img/del.png') }}" />
+        </a> 
+    {% endif %}
+    <script>
+
+        jQuery(document).ready(function () {
+            $('#tonobundle_recette_Ingredients').chosen();
+            $('.chosen-drop').append('<div id="save_ingredient_button"></div>');
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+
+    <h1>Menus</h1>
+    {% for meal in mealList %}
+        <li> {{ meal.slots.slot.nom }} {{ meal.nom }}</li>
+    {% endfor %}
+     
+    <h1>Recettes</h1>
+    <ul>
+        {% for recette in recetteList %}
+            <li class="recette">
+                <a href="{{ path('edit_recette', { 'recette' : recette.id}) }}">
+                    {{ recette.nom }}
+                </a>
+                 
+               {# <a href="{{ path('delete_recette', { 'id' : recette.id}) }}">
+                    <img src="{{ asset('svg/x.svg') }}" />
+                </a> #}
+                {% for ingredient in recette.getIngredients %}
+                <li class="ingredient">
+                    <a href="{{ path('edit_ingredient', { 'ingredient' : ingredient.id}) }}">
+                        {{ ingredient.nom }}
+                    </a> 
+                    
+                    {# <a href="{{ path('delete_ingredient', { 'id' : ingredient.id}) }}">
+                        <img src="{{ asset('svg/x.svg') }}" />
+                    </a> #}
+                </li>
+
+            </li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+{% endblock %}

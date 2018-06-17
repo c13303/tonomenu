@@ -1,0 +1,17 @@
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+    
+    
+    
+<h1>Edit Ingredient</h1>
+
+{{ form(form) }}
+
+<h1>Liste</h1>
+{% for ingredient in ingredientList %}
+       <a href="{{ path('edit_ingredient', { 'ingredient' : ingredient.id}) }}" {% if ingredient.isvegan %} class="vegan" {% endif %}>
+                        {{ ingredient.nom }}
+                    </a> - 
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+    <h1>Liste Courses</h1>    
+    {% for ing in ingredients|keys %}        
+        <li>{{ ing }}</li>
+    {% endfor %}
+{% endblock %}

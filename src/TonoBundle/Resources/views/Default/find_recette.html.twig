@@ -1,0 +1,18 @@
+
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+
+             
+             {{ form(form) }}
+             <div id="result">
+                 {% for score,value in scores %}
+                     <li>{{ recettes[score].nom }} ( {{ value }} )</li>
+                     {% endfor %}
+             </div>
+             <script>
+            
+       jQuery(document).ready(function(){
+           $('#form_ingredient').chosen();
+       });
+    </script>
+{% endblock %}

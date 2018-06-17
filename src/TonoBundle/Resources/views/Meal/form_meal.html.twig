@@ -1,0 +1,13 @@
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+
+{{ form(form) }}
+
+<script>
+            
+       jQuery(document).ready(function(){
+           $('#tonobundle_meal_recette').chosen();
+       });
+    </script>
+    
+{% endblock %}

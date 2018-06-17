@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/chosen.jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/ingredient_save.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('js/chosen.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
+    </head>
+    <body>
+
+        {% set actualtype = '' %}
+        <div class="container print">
+            <div class="block">
+                <a href="{{path('index')}}"><img src="{{asset('img/tonologo.png')}}" /></a> 
+                <h1>Menus</h1>        
+                {% for meal in mealList %}    
+
+                    <li> {% if meal.recette %}
+                        {{ meal.slot.nom }} : <b class="meal">{{ meal.recette.nom }}</b>  <br/>
+
+                        {% for ing in meal.recette.ingredients %}        
+                            <em>{{ ing.nom }}, </em>
+                        {% endfor %}
+                        {% endif %}
+                        </li>
+
+                        {% endfor %}
+                        </div>
+                        <div class="block">
+
+
+
+                         
+                               
+                                {% for ing,value in ingredientsP1 %} 
+                                    {% if actualtype != allIngredients[ing].type %}
+                                        <li class="type">{{ allIngredients[ing].type }} </li>
+                                        {% endif %}
+                                        {% set actualtype = allIngredients[ing].type %}
+                                    <li>{{ allIngredients[ing].nom }} {% if value > 1 %} ( x{{ value }} ) {% endif %}</li>
+                                    {% endfor %}
+                           
+
+                           
+                        </div>
+
+
+                    </div><script>
+                        window.onload = function () {
+                            window.print();
+                        }
+
+                    </script>
+
+
+                </body>

@@ -1,0 +1,153 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 17, 2017, 7:35:19 PM
+    Author     : c13303
+*/
+body{
+    font-size:16px;
+    font-family: arial;
+
+}
+.alert{
+    background: green;
+    padding: 20px;
+    color: yellow;
+}
+
+.recette,.recette a {
+   
+}
+.ingredient,.ingredient a{
+    color:blue;
+}
+
+li li{
+    padding-left:20px;
+}
+
+.vegan{
+    color:green !important;
+}
+
+.block{
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.save_ingredient{
+    padding:20px;
+}
+
+#save_ingredient_button{
+      
+    padding:5px;
+}
+ #monterm{
+        -webkit-appearance:button;
+        display:inline-block;
+        padding:5px;
+    }
+
+.logo{
+    text-align: center;
+}
+
+.logo img{
+    margin:auto;
+}
+
+.inline{
+    width:30%;
+    display:inline-block;
+}
+.inline a{
+  
+}
+.menu1{
+    text-align:right;
+    vertical-align: top;
+}
+
+.menu2{
+    text-align:left;
+    vertical-align: top;
+}
+
+form label{
+    width: 40%;
+    display: inline-block;
+    padding: 10px 0;
+}
+
+.chosen-container {
+    width: 50% !important;
+}
+
+.print{
+    height:90%;   
+    overflow: hidden !important;
+    padding: 40px;
+}
+li{
+    list-style: none;
+}
+
+.print h1, .print h2{
+    font-size:12px;
+}
+
+.smallicon{
+    width:60px;
+    height:auto;
+}
+.inglist a{
+    text-decoration: none;
+}
+.inglist img{
+    border:1px solid white;
+}
+.selected img{
+    border:1px solid green;
+}
+
+.type{
+    font-style: italic;
+    font-size:9px;
+    width:100%;
+    text-align: right;
+}
+textarea{
+    width:50%;
+   
+}
+.overlayclose{
+    float:right;
+    color:red;
+}
+#overlay{
+    border:4px solid black;
+    position:fixed;
+    width:500px;
+    left:50%;
+    margin-left:-250px;
+    padding:30px;
+    background:white;
+    z-index:10;
+    top:40%;
+    
+    display:none;
+}
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+   html, body,.print {
+    width: 210mm;
+    height: 297mm;
+  }

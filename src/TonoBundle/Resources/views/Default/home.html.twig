@@ -1,0 +1,66 @@
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+    <div class="container">
+        <div id="overlay">
+            <div class="overlayclose"><a class="overlayclose" href='#a'>X</a></div>
+            {{selectRecetteReplacer | raw}}
+            <br/><input type="submit" class="menufier" id="menufier" value="Menufier" />
+        </div>
+        <div class="block">
+            <h1>Menus</h1>
+            {% for slot in slots %}   
+                {% if mealList[slot.id] is defined %}
+                    {% set meal = mealList[slot.id] %}
+                    <li> 
+                        <a title="VOIR DETAILS" data-show="detail_menu_{{meal.id}}" class="show_detail" href="#a"><img src="{{ asset('img/edit.png') }}" /></a>
+                        <a class="changemeal" data-mealid="{{meal.id}}" data-route="{{ path('edit_meal_ajax',{'meal': meal.id}) }}" data-day="{{slot.id}}" title="CHOISIR UNE AUTRE RECETTE" class="noprint" href="#lol"><img src="{{ asset('img/replace.png') }}" /></a>
+                        <a class="delmeal" data-mealid="{{meal.id}}" data-route="{{ path('delete_meal_ajax',{'meal': meal.id}) }}" data-day="{{slot.id}}" title="SUPP" class="noprint" href="#lol"><img src="{{ asset('img/del.png') }}" /></a>
+                        {{ slot.nom }} :                        
+                            <b class="meal" id="mealid-{{meal.id}}">{% if meal.recette %} {{ meal.recette.nom }}                             
+                            {% endif %}</b> 
+                            {% if meal.recette is not null %}
+                            {{ constant('TonoBundle\\Entity\\Recette::LOURD_NAMES')[meal.recette.lourd] }}
+                            {% endif %}                      
+
+                    </li>
+                    <div id="detail_menu_{{meal.id}}" class="detail_menu">
+
+                        {% if meal.recette %}<a class="noprint" href="{{ path('edit_recette',{"recette" : meal.recette.id }) }}"><img src="{{ asset('img/edit.png') }}" />editer recette</a>   {% endif %}
+
+                        {% if meal.recette %}<ul> 
+                                {% for ing in meal.recette.ingredients %}        
+                                    <li>{{ ing.nom }}</li>
+                                    {% endfor %}
+                                <p class="meal">{{ meal.recette.indications }}</p> 
+                            {% endif %}
+                        </ul>
+                    </div>
+                        {% endif %}
+            {% endfor %}
+        </div>
+        <div class="block">
+
+            <h2>Courses <a href="{{path('index',{'print': 1})}}" target='_blank'><img  class="smallicon" src="{{asset('img/print.png')}}" /></a> 
+            </h2>  
+            {% for ing,value in ingredientsP1 %}        
+                <li class="inglist">                        
+                    <a  class="trigtype {% if allIngredients[ing].type == '1-legume' %}selected{% endif %}" href="#a" data-ingredient="{{allIngredients[ing].id}}" data-path="{{path('change_ingredient_type',{'id': allIngredients[ing].id,'type' : '1-legume'})}}" ><img src="{{asset('img/type_legume.png')}}" /></a> 
+                    <a  class="trigtype {% if allIngredients[ing].type == '2-viande' %}selected{% endif %}" href="#a" data-ingredient="{{allIngredients[ing].id}}" data-path="{{path('change_ingredient_type',{'id': allIngredients[ing].id,'type' : '2-viande'})}}" ><img  src="{{asset('img/type_viande.png')}}" /> </a> 
+                    <a  class="trigtype {% if allIngredients[ing].type == '3-frais' %}selected{% endif %}" href="#a" data-ingredient="{{allIngredients[ing].id}}" data-path="{{path('change_ingredient_type',{'id': allIngredients[ing].id,'type' : '3-frais'})}}" ><img  src="{{asset('img/type_frais.png')}}" /></a> 
+                    <a  class="trigtype {% if allIngredients[ing].type == '4-bouteille' %}selected{% endif %}" href="#a" data-ingredient="{{allIngredients[ing].id}}" data-path="{{path('change_ingredient_type',{'id': allIngredients[ing].id,'type' : '4-bouteille'})}}" ><img  src="{{asset('img/type_bouteille.png')}}" /></a> 
+                    <a  class="trigtype {% if allIngredients[ing].type == '5-epicerie' %}selected{% endif %}" href="#a" data-ingredient="{{allIngredients[ing].id}}" data-path="{{path('change_ingredient_type',{'id': allIngredients[ing].id,'type' : '5-epicerie'})}}" ><img  src="{{asset('img/type_epicerie.png')}}" /></a> 
+                    {{ allIngredients[ing].nom }} {% if value > 1 %} ( x{{ value }} ) {% endif %}
+                </li>
+            {% endfor %}
+            
+
+        </div>
+
+    </div>
+    <script>
+
+        jQuery(document).ready(function () {
+            $('#recettereplacer').chosen();
+        });
+    </script>
+{% endblock %}

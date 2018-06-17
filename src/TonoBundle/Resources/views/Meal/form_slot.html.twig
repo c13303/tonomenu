@@ -1,0 +1,14 @@
+{% extends 'TonoBundle::base.html.twig' %}
+{% block content %}
+    <p><a href="{{ path('ajout_slot') }}">new slot</a></p>
+{{ form(form) }}
+
+{% for slot in slotList %}
+    {% set mykey = slot.lourdeur %}
+    <li>{{ slot.position }} - {{ slot.nom }} - {{ constant('TonoBundle\\Entity\\Recette::LOURD_NAMES')[mykey] }}
+    <a class="noprint" href="{{ path('edit_slot',{"slot" : slot.id }) }}"><img src="{{ asset('img/edit.png') }}" /></a>  
+    </li>
+    
+    {% endfor %}
+    
+{% endblock %}
